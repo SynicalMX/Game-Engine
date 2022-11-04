@@ -1,6 +1,6 @@
-import error from "./error";
-import Scope from "./scope";
-import { Return, LuaFunction } from './classes';
+import error from "./error.js";
+import Scope from "./scope.js";
+import { Return, LuaFunction } from './classes.js';
 
 export default function interpreter(trees, scope) {
 	if (!scope) {
@@ -11,10 +11,6 @@ export default function interpreter(trees, scope) {
 		scope.defineFunction('tostring', new LuaFunction(obj => {
 			return stringify(obj);
 		}), '<Native Function tostring>');
-		scope.defineFunction('addelement', new LuaFunction(obj => {
-			const ele = document.createElement(obj);
-			document.body.appendChild(ele);
-		}), '<Native Function addelement');
 	}
 	function stringify(object) {
 		if (object === null) return 'nil';
@@ -129,6 +125,7 @@ export default function interpreter(trees, scope) {
 						return left !== right;
 				}
 			}
+			// eslint-disable-next-line no-fallthrough
 			case 'variable': {
 				return scopeGet(expr.name);
 			}
@@ -153,7 +150,7 @@ export default function interpreter(trees, scope) {
 				if (!(callee instanceof LuaFunction)) {
 					error(expr.line, 'Cannot call ' + type(callee));
 				}
-				return callee.call.apply(callee, expr.args.map(arg => interpret(arg)));
+				return callee.call.apply(callee, ...expr.args.map(arg => interpret(arg)));
 			}
 			case 'block':
 				interpretBlock(expr.body);

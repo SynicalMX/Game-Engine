@@ -1,15 +1,19 @@
-import { LuaFunction } from './classes';
+import { LuaFunction } from './classes.js';
 function clone(obj) {
 	if (typeof obj === 'function') return () => obj();
 	if (typeof obj !== 'object' || obj === null) return obj;
-	const res = {};
-	for (property in obj) {
-		if (obj.hasOwnProperty(property)) {
-			if (typeof property === 'object' || typeof property === 'function') res[property] = clone(obj[property]);
-			else res[property] = obj[property];
+	const res = {
+		call: ""
+	};
+	for (const property in obj) {
+		if (obj.hasOwnProperty.call(property)) {
+			if (typeof property === 'object' || typeof property === 'function')
+				res[typeof property] = clone(obj[typeof property]);
+			else
+				res[property] = obj[property];
 		}
 	}
-	if (obj instanceof LuaFunction) return new LuaFunction(res.call, res.toString);
+	if (obj instanceof LuaFunction) return new LuaFunction(res.call, res.toString());
 	else return res;
 }
 function link(from, to) {
@@ -28,7 +32,7 @@ function link(from, to) {
 			configurable: true,
 			enumerable: true,
 			get: () => storeNew,
-			set: function(val) {
+			set: function(val) { 
 				storeOrig = val, storeNew = val;
 			}
 		});

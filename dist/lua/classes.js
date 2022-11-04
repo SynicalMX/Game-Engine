@@ -1,4 +1,4 @@
-import { runScript } from "./lua";
+import { runScript } from "./lua.js";
 export class Return extends Error {
     constructor(value) {
         super('Illegal return statement'); //if user tries to return outside function

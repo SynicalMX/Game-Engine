@@ -1,20 +1,22 @@
-import { LuaFunction } from './classes';
+import { LuaFunction } from './classes.js';
 function clone(obj) {
     if (typeof obj === 'function')
         return () => obj();
     if (typeof obj !== 'object' || obj === null)
         return obj;
-    const res = {};
-    for (property in obj) {
-        if (obj.hasOwnProperty(property)) {
+    const res = {
+        call: ""
+    };
+    for (const property in obj) {
+        if (obj.hasOwnProperty.call(property)) {
             if (typeof property === 'object' || typeof property === 'function')
-                res[property] = clone(obj[property]);
+                res[typeof property] = clone(obj[typeof property]);
             else
                 res[property] = obj[property];
         }
     }
     if (obj instanceof LuaFunction)
-        return new LuaFunction(res.call, res.toString);
+        return new LuaFunction(res.call, res.toString());
     else
         return res;
 }

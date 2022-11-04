@@ -1,6 +1,6 @@
-import lex from "./lexer";
-import parse from "./parser";
-import interpret from "./interpeter";
+import lex from "./lexer.js";
+import parse from "./parser.js";
+import interpret from "./interpeter.js";
 import * as fs from "fs";
 export function runScript(file) {
     const code = fs.readFileSync(file).toString();
