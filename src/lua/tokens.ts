@@ -10,10 +10,12 @@ export enum TokenType {
     OPEN_SQUARE,
     CLOSE_SQUARE,
     KEYWORD,
+    NUM,
     PLUS,
-    MINUS,
-    DIVIDE,
-    SUBTRACT
+    TIMES,
+    TRUE,
+    FALSE,
+    EOF
 }
 
 export enum KeywordType {

@@ -7,9 +7,11 @@ import {TokenType, KeywordType} from "./tokens.js"
 
 export class Token {
 	public TokenType: TokenType
+	public Text: string
+	public startPos: number
 	
-	constructor(self, TokenType: TokenType){
-		self.TokenType = TokenType
+	constructor(TokenType: TokenType){
+		this.TokenType = TokenType
 	}
 }
 
@@ -17,7 +19,7 @@ export class Keyword extends Token {
 	public KeywordType: KeywordType
 
 	constructor(self, KeywordType: KeywordType) {
-		super(self, TokenType.KEYWORD)
+		super(TokenType.KEYWORD)
 		self.KeywordType = KeywordType
 	}
 }
