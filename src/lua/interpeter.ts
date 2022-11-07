@@ -150,7 +150,7 @@ export default function interpreter(trees, scope) {
 				if (!(callee instanceof LuaFunction)) {
 					error(expr.line, 'Cannot call ' + type(callee));
 				}
-				return callee.call.apply(callee, ...expr.args.map(arg => interpret(arg)));
+				return callee.call.apply([callee, expr.args.map(arg => interpret(arg))]);
 			}
 			case 'block':
 				interpretBlock(expr.body);

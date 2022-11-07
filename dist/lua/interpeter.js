@@ -75,6 +75,7 @@ export default function interpreter(trees, scope) {
         switch (expr.type) {
             case 'literal':
                 return expr.value;
+                break;
             case 'binary': {
                 const left = interpret(expr.left);
                 const right = interpret(expr.right);
@@ -166,7 +167,7 @@ export default function interpreter(trees, scope) {
                 if (!(callee instanceof LuaFunction)) {
                     error(expr.line, 'Cannot call ' + type(callee));
                 }
-                return callee.call.apply(callee, expr.args.map(arg => interpret(arg)));
+                return callee.call.apply([callee, expr.args.map(arg => interpret(arg))]);
             }
             case 'block':
                 interpretBlock(expr.body);

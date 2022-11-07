@@ -1,23 +1,16 @@
-import { runScript } from "./lua.js";
-export class Return extends Error {
-    constructor(value) {
-        super('Illegal return statement'); //if user tries to return outside function
-        this.value = null;
-        this.name = 'LuaError';
-        this.value = value;
+/**
+ * classes.ts
+ * This file contains necessary classes that allow the interpreter to function.
+ */
+import { TokenType } from "./tokens.js";
+export class Token {
+    constructor(self, TokenType) {
+        self.TokenType = TokenType;
     }
 }
-export class LuaFunction {
-    constructor(call, toString = '<Function>') {
-        this.call = call;
-        this.toString = toString;
-    }
-}
-export class LuaScript {
-    constructor(file) {
-        this.file = file;
-    }
-    execute() {
-        runScript(this.file);
+export class Keyword extends Token {
+    constructor(self, KeywordType) {
+        super(self, TokenType.KEYWORD);
+        self.KeywordType = KeywordType;
     }
 }
