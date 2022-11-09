@@ -1,4 +1,5 @@
-import { Token } from "./classes";
+import { Keyword, Token } from "./classes";
+import { KeywordType, TokenType } from "./tokens";
 
 export class Lexer {
    public lex(file: string) {
@@ -17,7 +18,18 @@ export class Lexer {
                     } else {
                         break
                     }
+					pos += 1
                 }
+
+				for (let i = 0; i < Object.keys(KeywordType).length;) {
+					const keyword = Object.keys(KeywordType)[i]
+					if (text === keyword) {
+						switch (keyword) {
+							case:
+								
+						}
+					}
+				}
             }
         }
    }

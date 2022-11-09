@@ -18,8 +18,8 @@ export class Token {
 export class Keyword extends Token {
 	public KeywordType: KeywordType
 
-	constructor(self, KeywordType: KeywordType) {
+	constructor(KeywordType: KeywordType) {
 		super(TokenType.KEYWORD)
-		self.KeywordType = KeywordType
+		this.KeywordType = KeywordType
 	}
 }
