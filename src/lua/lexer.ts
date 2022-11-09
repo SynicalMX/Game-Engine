@@ -2,15 +2,22 @@ import { Token } from "./classes";
 
 export class Lexer {
    public lex(file: string) {
-        var tokens = Array<Token>;
         var pos = 0;
+        var tokens: Token[]
 
         while (pos < file.length) {
-            const tokenStartPos = pos;
-            const lookAhead = file[pos + 1];
+            const lookahead = pos + 1;
 
-            if (lookAhead === ' ') {
-                pos += 1;
+            if (file[pos].match(/\(/g) && file[lookahead].match(/\(/g)) {
+                const back = pos
+                var text = ""
+                while (file[pos] != ' ') {
+                    if (file[pos].match(/\(/g)) {
+                        text += file[pos]
+                    } else {
+                        break
+                    }
+                }
             }
         }
    }
