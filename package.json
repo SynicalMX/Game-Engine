@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "node dist/main.js"
+    "start": "node ./dist/main.js"
   },
   "dependencies": {
     "@types/node": "^18.11.9",

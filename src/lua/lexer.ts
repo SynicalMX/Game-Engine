@@ -1,36 +1,34 @@
-import { Keyword, Token } from "./classes";
-import { KeywordType, TokenType } from "./tokens";
+import { Keyword, Token } from "./classes.js";
+import { KeywordType, TokenType } from "./tokens.js";
 
 export class Lexer {
    public lex(file: string) {
-        var pos = 0;
-        var tokens: Token[]
+        let pos = 0;
+        let tokens: Token[]
 
         while (pos < file.length) {
             const lookahead = pos + 1;
 
             if (file[pos].match(/\(/g) && file[lookahead].match(/\(/g)) {
                 const back = pos
-                var text = ""
                 while (file[pos] != ' ') {
-                    if (file[pos].match(/\(/g)) {
-                        text += file[pos]
-                    } else {
+                    if (!file[pos].match(/\(/g)) {
+                        pos = back
                         break
                     }
 					pos += 1
                 }
 
 				for (let i = 0; i < Object.keys(KeywordType).length;) {
-					const keyword = Object.keys(KeywordType)[i]
-					if (text === keyword) {
-						switch (keyword) {
-							case:
-								
-						}
-					}
+					const keyword = KeywordType[i]
+                    console.log(keyword)
+					tokens.push(new Keyword(KeywordType.AND))
 				}
             }
+        }
+        // Loop through tokens
+        for (const token of tokens) {
+            console.log(token)
         }
    }
 }

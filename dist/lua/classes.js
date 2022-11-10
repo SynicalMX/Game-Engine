@@ -4,13 +4,13 @@
  */
 import { TokenType } from "./tokens.js";
 export class Token {
-    constructor(self, TokenType) {
-        self.TokenType = TokenType;
+    constructor(TokenType) {
+        this.TokenType = TokenType;
     }
 }
 export class Keyword extends Token {
-    constructor(self, KeywordType) {
-        super(self, TokenType.KEYWORD);
-        self.KeywordType = KeywordType;
+    constructor(KeywordType) {
+        super(TokenType.KEYWORD);
+        this.KeywordType = KeywordType;
     }
 }
