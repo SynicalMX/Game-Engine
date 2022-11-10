@@ -37,6 +37,8 @@ export class Lexer {
             }
         }
         //Loop through tokens
-        tokens.forEach(())
+        tokens.forEach((token, idx) => {
+			console.log(token)
+		})
    }
 }
